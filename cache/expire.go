@@ -2,7 +2,7 @@ package cache
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"time"
 )
 
@@ -42,9 +42,9 @@ func SetExpire(key string, value string, ttl int64) {
 
 	realBytes, err := json.Marshal(itemData)
 	if err == nil {
-		fmt.Println("set ", key, string(realBytes))
+		log.Println("set ", key, string(realBytes))
 		set(key, string(realBytes))
 	} else {
-		fmt.Println("json encode error .", err)
+		log.Println("json encode error .", err)
 	}
 }
