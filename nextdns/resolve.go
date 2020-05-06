@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"handshakeproxy/cache"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"time"
 )
@@ -16,6 +17,13 @@ var (
 	nextDNSID     = "c3484e"
 	cacheTTL      = 60
 )
+
+// SetOptions 更新 nextdns 相关配置
+func SetOptions(id string, v int32) {
+	log.Printf("Set nextdns options : id : %s , local cache %d seconds \n", id, v)
+	cacheTTL = int(v)
+	nextDNSID = id
+}
 
 func makeResolveURL(domain, resolveType string) string {
 	return nextDNSPrefix + nextDNSID + "?name=" + domain + "&type=" + resolveType
@@ -33,7 +41,7 @@ func writeCache(domain, value string) bool {
 	return true
 }
 
-// HandshakeResolve 解析 handshake 域名
+// HandshakeResolve 解析 Handshake 域名
 func HandshakeResolve(domain string) string {
 	if n := resolveFromCache(domain); n != "" {
 		return n

@@ -11,11 +11,12 @@ go build
 ## Start proxy
 
 ```shell
-./handshakeproxy 
+./handshakeproxy proxy
 ```
 
-## Simple Test 
+## Simple Test
 
 ```shell
 export http_proxy=localhost:8080 && curl -v -s welcome.nb
+# Or ./handshakeproxy debug
 ```

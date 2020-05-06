@@ -12,7 +12,8 @@ var (
 	bucketName = "handshake"
 )
 
-func init() {
+// Init 数据库初始化函数
+func Init() {
 	db, err = bolt.Open("cache.db", 0600, nil)
 	if err != nil {
 		log.Fatal(err)

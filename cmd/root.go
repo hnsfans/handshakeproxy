@@ -2,10 +2,15 @@ package cmd
 
 import "github.com/spf13/cobra"
 
-var rootCmd = &cobra.Command{Use: "handshakeproxy"}
+var (
+	rootCmd = &cobra.Command{Use: "handshakeproxy"}
+	verbose bool
+)
 
 func init() {
-	rootCmd.AddCommand(versionCmd, proxyCmd)
+	rootCmd.AddCommand(proxyCmd, debugCmd, versionCmd)
+	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose output")
+
 }
 
 // Main cli 模块入口函数
