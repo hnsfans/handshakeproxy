@@ -43,6 +43,9 @@ func writeCache(domain, value string) bool {
 
 // HandshakeResolve 解析 Handshake 域名
 func HandshakeResolve(domain string) string {
+	if !isDomainHandshake(domain) {
+		return ""
+	}
 	if n := resolveFromCache(domain); n != "" {
 		return n
 	}
