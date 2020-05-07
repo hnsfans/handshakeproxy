@@ -2,6 +2,13 @@
 
 ## Setup A http proxy to visit handshake domain.
 
+## On Mac Better Put handshake.sh to your bin dir . Then You can quickly on or off handshake proxy
+
+```shell
+./handshake.sh on
+./handshake.sh off
+```
+
 ## Build handshakeproxy
 
 ```shell

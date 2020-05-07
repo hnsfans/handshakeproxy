@@ -1,12 +1,11 @@
 package nextdns
 
 import (
-	"log"
 	"strings"
 )
 
 var (
-	tldMap = map[string]map[string]bool{}
+	tldMap = map[string]map[string]int{}
 )
 
 func init() {
@@ -14,9 +13,9 @@ func init() {
 	for _, v := range items {
 		firstC := string(v[0])
 		if _, exist := tldMap[firstC]; !exist {
-			tldMap[firstC] = map[string]bool{}
+			tldMap[firstC] = map[string]int{}
 		}
-		tldMap[firstC][v] = false
+		tldMap[firstC][v] = 1
 	}
 }
 
@@ -26,9 +25,8 @@ func isDomainHandshake(domain string) bool {
 	tld := splits[l-1]
 	tldUpper := strings.ToUpper(tld)
 	firstC := string(tldUpper[0])
-	log.Println(firstC)
 	if n, exist := tldMap[firstC]; exist {
-		return n[tldUpper]
+		return n[tldUpper] != 1
 	}
 	return true
 }
